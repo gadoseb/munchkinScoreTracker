@@ -17,25 +17,16 @@ Manage player levels, bonuses, roll a virtual dice, and see who reaches **level 
 
 ---
 
-## 🛠 Installation
-
-1. **Clone the repository:**
+## 🛠 Installation & Run
 
 ```bash
+# Clone the repository
 git clone https://github.com/gadoseb/munchkinScoreTracker.git
-cd munchkinScoreTracker```
+cd munchkinScoreTracker
 
-2. **Install dependencies:**
+# Install dependencies
+pip install streamlit
 
-```bash
-Copy
-Edit
-pip install streamlit```
+# Run the app
+streamlit run app.py
 
-
-3. **Run the app:**
-
-```bash
-Copy
-Edit
-streamlit run app.py```
