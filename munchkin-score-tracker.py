@@ -35,7 +35,7 @@ st.sidebar.header("🎲 Virtual Dice & Controls")
 # Instructions in sidebar
 st.sidebar.markdown("""
 ### How to Use This App:
-1. **Add Players:** Enter each player's name and click `Add`.
+1. **Add Players:** Enter each player's name, select gender, and click `Add`.
 2. **Adjust Levels:** Use `+Lvl` or `-Lvl` to increase or decrease the player's level.
 3. **Adjust Bonuses:** Use `+Bns` or `-Bns` to increase or decrease bonus points by 1.
 4. **Remove Player:** Click ❌ to remove a player.
@@ -54,13 +54,17 @@ if st.sidebar.button("Roll d6"):
 if st.sidebar.button("🔄 Reset Game"):
     st.session_state.players = {}
 
-
-# Add a new player
+# Add a new player with gender selection
 with st.form("add_player"):
     new_player = st.text_input("Player Name")
+    gender = st.radio("Gender", ["♂ Male", "♀ Female"])
     if st.form_submit_button("Add") and new_player:
         if new_player not in st.session_state.players:
-            st.session_state.players[new_player] = {"level": 1, "bonus": 0}
+            st.session_state.players[new_player] = {
+                "level": 1,
+                "bonus": 0,
+                "gender": gender
+            }
 
 # Display players as cards (max 2 per row)
 if st.session_state.players:
@@ -79,7 +83,7 @@ if st.session_state.players:
                     f"""
                     <div style="border:2px solid #444; border-radius:15px; padding:20px; margin-bottom:15px; background-color:#f9f9f9; text-align:center; min-height:125px; display:flex; flex-direction:column; justify-content:space-between;">
                         <div>
-                            <h3 style=\"margin:0;\">{player}</h3>
+                            <h3 style="margin:0;">{stats['gender']} {player}</h3>
                             <p><b>Level:</b> {stats['level']} | <b>Bonus:</b> {stats['bonus']} | <b>Total:</b> {stats['level'] + stats['bonus']}</p>
                         </div>
                     </div>
